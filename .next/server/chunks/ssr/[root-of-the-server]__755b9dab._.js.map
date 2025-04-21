@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 23, "column": 0}, "map": {"version":3,"sources":["file://C%3A/Users/Zeldo/Desktop/dev/onyxPortfolio/onyx-portfolio/src/components/ClientStarryBackground.tsx"],"sourcesContent":["'use client';\r\nimport React, { useEffect } from 'react';\r\nimport dynamic from 'next/dynamic';\r\n\r\nconst StarryBackground = dynamic(() => import('./StarryBackground'), { ssr: false });\r\n\r\nexport default function ClientStarryBackground() {\r\n  useEffect(() => {\r\n    console.log('✅ ClientStarryBackground mounted');\r\n  }, []);\r\n  return <StarryBackground />;\r\n}\r\n"],"names":[],"mappings":";;;;AACA;AACA;;AAFA;;;;AAIA,MAAM,mBAAmB,CAAA,GAAA,+JAAA,CAAA,UAAO,AAAD;;;;;;IAAwC,KAAK;;AAE7D,SAAS;IACtB,CAAA,GAAA,qMAAA,CAAA,YAAS,AAAD,EAAE;QACR,QAAQ,GAAG,CAAC;IACd,GAAG,EAAE;IACL,qBAAO,8OAAC;;;;;AACV","debugId":null}}]
+}
