@@ -19,10 +19,10 @@ export default function StarryBackground() {
     if (!ctx) return;
 
     let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    let height = canvas.height = document.documentElement.scrollHeight;
 
     // Generate stars
-    const numStars = 200;
+    const numStars = 1000;
     const stars: Star[] = [];
     for (let i = 0; i < numStars; i++) {
       const radius = Math.random() * 1.5 + 0.5;
