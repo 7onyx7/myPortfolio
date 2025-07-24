@@ -1,6 +1,8 @@
-import Image from "next/image";
 import HelloWorld from '@/components/HelloWorld';
 import AboutMe from '@/components/AboutMe';
+import ProjectGallery from '@/components/ProjectGallery';
+import Contact from '@/components/Contact';
+import Navbar from '@/components/Navbar';
 import ClientStarryBackground from '@/components/ClientStarryBackground';
 
 export default function Home() {
@@ -12,23 +14,37 @@ export default function Home() {
     "Achieved top grades in Computer Science courses.",
   ];
   return (
-    <div className="relative bg-black min-h-screen">
+    <div className="min-h-screen bg-black text-white relative">
       <ClientStarryBackground />
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] relative z-10">
-        <main className="flex flex-col gap-[32px] row-start-2 items-center">
+      <Navbar />
+      
+      {/* Home Section */}
+      <main id="home" className="relative z-10 min-h-screen">
+        <div className="flex items-center justify-center min-h-screen p-8 pt-20">
           <HelloWorld name="Onyx" />
-          
+        </div>
+      </main>
+
+      {/* About Section */}
+      <section id="about" className="relative z-10">
+        <div className="py-20 px-8">
           <AboutMe 
             bio={myBio}
             skills={mySkills}
             achievements={myAchievements}
           />
+        </div>
+      </section>
 
-        </main>
-        <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-         
-        </footer>
-      </div>
+      {/* Projects Section */}
+      <section className="relative z-10">
+        <ProjectGallery />
+      </section>
+
+      {/* Contact Section */}
+      <section className="relative z-10">
+        <Contact />
+      </section>
     </div>
   );
 }
