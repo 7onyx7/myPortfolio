@@ -44,7 +44,7 @@ const projects: Project[] = [
     description: "COMING SOON - Stealth AI App",
     image: "/placeholder-project-3.jpg",
     technologies: ["Python", "OpenAI API", "WebSocket", "Electron", "Node.js"],
-    githubUrl: "https://github.com/yourusername/ai-chat",
+    githubUrl: "https://github.com/7onyx7/secret-project",
     category: "AI"
   },
   {
@@ -62,7 +62,7 @@ const projects: Project[] = [
     description: "An application for newbie PC gamers to easily optimize their gaming experience.",
     image: "/placeholder-project-5.jpg",
     technologies: ["Electron", "TypeScript", "Node.js"],
-    githubUrl: "https://github.com/yourusername/task-manager",
+    githubUrl: "https://github.com/7onyx7/secret-project",
     category: "other"
   },
     {
