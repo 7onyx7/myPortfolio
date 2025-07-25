@@ -56,7 +56,7 @@ export default function AboutMe({ bio, skills, achievements }: AboutMeProps) {
       <div className="grid gap-10 md:grid-cols-2">
         <div>
           <motion.h3 variants={item}
-            className="mb-4 text-2xl font-semibold text-indigo-200"
+            className="mb-4 text-2xl font-semibold text-indigo-200 text-center"
           >
             Skills
           </motion.h3>
@@ -75,7 +75,7 @@ export default function AboutMe({ bio, skills, achievements }: AboutMeProps) {
 
         <div>
           <motion.h3 variants={item}
-            className="mb-4 text-2xl font-semibold text-green-200"
+            className="mb-4 text-2xl font-semibold text-green-200 text-center"
           >
             Achievements
           </motion.h3>

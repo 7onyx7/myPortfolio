@@ -1,0 +1,11 @@
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="profileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="150" cy="150" r="150" fill="url(#profileGrad)"/>
+  <circle cx="150" cy="120" r="50" fill="#ffffff" opacity="0.8"/>
+  <path d="M 75 225 Q 150 175 225 225 L 225 300 A 150 150 0 0 1 75 300 Z" fill="#ffffff" opacity="0.8"/>
+</svg>

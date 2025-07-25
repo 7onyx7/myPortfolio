@@ -1,11 +1,28 @@
+'use client';
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import HelloWorld from '@/components/HelloWorld';
 import AboutMe from '@/components/AboutMe';
+import ProfilePicture from '@/components/ProfilePicture';
 import ProjectGallery from '@/components/ProjectGallery';
 import Contact from '@/components/Contact';
 import Navbar from '@/components/Navbar';
+import ScrollProgress from '@/components/ScrollProgress';
+import ScrollIndicator from '@/components/ScrollIndicator';
 import ClientStarryBackground from '@/components/ClientStarryBackground';
+import { useParallax } from '@/hooks/useParallax';
 
 export default function Home() {
+  const homeRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
+  const projectsRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
+
+  const homeParallax = useParallax(homeRef, 50);
+  const aboutParallax = useParallax(aboutRef, 100);
+  const projectsParallax = useParallax(projectsRef, 75);
+  const contactParallax = useParallax(contactRef, 50);
+
   const myBio = "Hello! I'm Onyx, a passionate Computer Science student with a focus in Software Engineering. I enjoy creating innovative solutions and exploring new technologies.";
   const mySkills = ["React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "C++", "Java", "Python", " and more!"];
   const myAchievements = [
@@ -13,20 +30,48 @@ export default function Home() {
     "Participated in hackathons and won Best Patient Safety Solution at Uncommon Hacks 2025!",
     "Achieved top grades in Computer Science courses.",
   ];
+  
   return (
     <div className="min-h-screen bg-black text-white relative">
+      <ScrollProgress />
       <ClientStarryBackground />
       <Navbar />
       
       {/* Home Section */}
-      <main id="home" className="relative z-10 min-h-screen">
-        <div className="flex items-center justify-center min-h-screen p-8 pt-20">
-          <HelloWorld name="Onyx" />
+      <motion.main 
+        id="home" 
+        ref={homeRef}
+        className="relative z-10 min-h-screen"
+        style={{ 
+          y: homeParallax.y,
+          opacity: homeParallax.opacity,
+          scale: homeParallax.scale 
+        }}
+      >
+        <div className="flex flex-col items-center justify-center min-h-screen p-8 pt-20 relative">
+          <div className="flex flex-col items-center space-y-8">
+            <ProfilePicture 
+              src="/onyx.jpg" 
+              alt="Onyx Profile Picture" 
+              size="lg"
+            />
+            <HelloWorld name="Onyx" />
+          </div>
+          <ScrollIndicator />
         </div>
-      </main>
+      </motion.main>
 
       {/* About Section */}
-      <section id="about" className="relative z-10">
+      <motion.section 
+        id="about" 
+        ref={aboutRef}
+        className="relative z-10"
+        style={{ 
+          y: aboutParallax.y,
+          opacity: aboutParallax.opacity,
+          scale: aboutParallax.scale 
+        }}
+      >
         <div className="py-20 px-8">
           <AboutMe 
             bio={myBio}
@@ -34,17 +79,34 @@ export default function Home() {
             achievements={myAchievements}
           />
         </div>
-      </section>
+      </motion.section>
 
       {/* Projects Section */}
-      <section className="relative z-10">
+      <motion.section 
+        id="projects" 
+        ref={projectsRef}
+        className="relative z-10"
+        style={{ 
+          y: projectsParallax.y,
+          opacity: projectsParallax.opacity,
+          scale: projectsParallax.scale 
+        }}
+      >
         <ProjectGallery />
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
-      <section className="relative z-10">
+      <motion.section 
+        ref={contactRef}
+        className="relative z-10"
+        style={{ 
+          y: contactParallax.y,
+          opacity: contactParallax.opacity,
+          scale: contactParallax.scale 
+        }}
+      >
         <Contact />
-      </section>
+      </motion.section>
     </div>
   );
 }

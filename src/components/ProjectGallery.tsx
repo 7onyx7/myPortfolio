@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import Image from 'next/image';
+import { FiBox } from 'react-icons/fi';
+
 interface Project {
   id: number;
   title: string;
@@ -10,71 +13,70 @@ interface Project {
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
-  category: 'web' | 'mobile' | 'ai' | 'other';
+  category: 'web' | 'mobile' | 'AI' | 'Game' | 'other';
 }
 
 // Sample projects - you can replace these with your actual projects
 const projects: Project[] = [
   {
     id: 1,
-    title: "Portfolio Website",
-    description: "A modern, responsive portfolio built with Next.js and Framer Motion featuring interactive starry background and smooth animations.",
-    image: "/placeholder-project-1.jpg",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    githubUrl: "https://github.com/yourusername/portfolio",
-    liveUrl: "https://yourportfolio.com",
+    title: "bantrhaus",
+    description: "A cozy chatroom platform for users to safely connect, vibe with new pals, and share their thoughts.",
+    image: "/bh.png",
+    technologies: ["React", "Express.js", "PostgreSQL"],
+    githubUrl: "https://github.com/7onyx7/bantrhaus",
+    liveUrl: "https://bantrhaus.com",
     category: "web"
   },
   {
     id: 2,
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with user authentication, payment processing, and admin dashboard.",
-    image: "/placeholder-project-2.jpg",
-    technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe"],
-    githubUrl: "https://github.com/yourusername/ecommerce",
-    liveUrl: "https://yourecommerce.com",
-    category: "web"
-  },
-  {
-    id: 3,
-    title: "AI Chat Application",
-    description: "Real-time chat application with AI integration for smart responses and conversation analysis.",
-    image: "/placeholder-project-3.jpg",
-    technologies: ["Python", "OpenAI API", "WebSocket", "React", "Flask"],
-    githubUrl: "https://github.com/yourusername/ai-chat",
-    category: "ai"
-  },
-  {
-    id: 4,
-    title: "Mobile Weather App",
-    description: "Cross-platform mobile app providing detailed weather forecasts with beautiful UI and location-based services.",
-    image: "/placeholder-project-4.jpg",
-    technologies: ["React Native", "Weather API", "Expo", "Redux"],
-    githubUrl: "https://github.com/yourusername/weather-app",
+    title: "RxClash (formerly MediScan)",
+    description: "A Gemini powered AI medication analysis tool to inform patients and prevent medical mishaps.",
+    image: "/rxclash.png",
+    technologies: ["React","React Native", "Expo", "TypeScript"],
+    githubUrl: "https://github.com/7onyx7/RxClash",
+    liveUrl: "https://rxclash.com",
     category: "mobile"
   },
   {
-    id: 5,
-    title: "Task Management System",
-    description: "Collaborative task management platform with real-time updates, team collaboration, and project tracking.",
-    image: "/placeholder-project-5.jpg",
-    technologies: ["Vue.js", "Firebase", "Vuex", "CSS3"],
-    githubUrl: "https://github.com/yourusername/task-manager",
-    liveUrl: "https://yourtaskmanager.com",
-    category: "web"
+    id: 3,
+    title: "PROJECT FIRE",
+    description: "COMING SOON - Stealth AI App",
+    image: "/placeholder-project-3.jpg",
+    technologies: ["Python", "OpenAI API", "WebSocket", "Electron", "Node.js"],
+    githubUrl: "https://github.com/yourusername/ai-chat",
+    category: "AI"
   },
   {
-    id: 6,
-    title: "Data Visualization Dashboard",
-    description: "Interactive dashboard for data analysis with charts, graphs, and real-time data processing capabilities.",
-    image: "/placeholder-project-6.jpg",
-    technologies: ["D3.js", "React", "Node.js", "PostgreSQL"],
-    githubUrl: "https://github.com/yourusername/data-dashboard",
+    id: 4,
+    title: "C++ Minesweeper",
+    description: "A classic Minesweeper game built with C++ with a very basic console UI.",
+    image: "/placeholder-project-4.jpg",
+    technologies: ["C++"],
+    githubUrl: "https://github.com/7onyx7/minesweeper",
+    category: "Game"
+  },
+  {
+    id: 5,
+    title: "EZ PC",
+    description: "An application for newbie PC gamers to easily optimize their gaming experience.",
+    image: "/placeholder-project-5.jpg",
+    technologies: ["Electron", "TypeScript", "Node.js"],
+    githubUrl: "https://github.com/yourusername/task-manager",
     category: "other"
-  }
+  },
+    {
+        id: 6,
+        title: "Sphere render",
+        description: "C++ sphere render",
+        image: "/placeholder-project-6.jpg",
+        technologies: ["C++", "OpenGL"],
+        githubUrl: "https://github.com/7onyx7/OpenGLGame",
+        category: "Game"
+    }
 ];
 
-const categories = ['all', 'web', 'mobile', 'ai', 'other'];
+const categories = ['all', 'web', 'mobile', 'AI', 'Game', 'other'];
 
 export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -157,37 +159,44 @@ export default function ProjectGallery() {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map((category) => (
-            <motion.button
-              key={category}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all capitalize ${
-                selectedCategory === category
-                  ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/25'
-                  : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white'
-              }`}
-            >
-              {category}
-            </motion.button>
-          ))}
+          {categories.map((category) => {
+            const count = category === 'all' 
+              ? projects.length 
+              : projects.filter(p => p.category === category).length;
+            
+            return (
+              <motion.button
+                key={category}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all capitalize ${
+                  selectedCategory === category
+                    ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/25'
+                    : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                {category} ({count})
+              </motion.button>
+            );
+          })}
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="wait">
+        {filteredProjects.length > 0 ? (
+          <motion.div
+            key={selectedCategory}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {filteredProjects.map((project) => (
               <motion.div
-                key={project.id}
+                key={`${selectedCategory}-${project.id}`}
                 variants={cardVariants}
-                layout
+                initial="hidden"
+                animate="visible"
                 whileHover={{ y: -10 }}
                 onClick={() => setSelectedProject(project)}
                 className="group cursor-pointer"
@@ -195,15 +204,25 @@ export default function ProjectGallery() {
                 <div className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300">
                   {/* Project Image */}
                   <div className="relative h-48 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 overflow-hidden">
-                    <div className="absolute inset-0 bg-black/20"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-6xl opacity-20">🚀</span>
-                    </div>
+                    {project.image && !project.image.startsWith('/placeholder-project') ? (
+                      <Image 
+                        src={project.image} 
+                        alt={project.title}
+                        width={400}
+                        height={192}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <FiBox className="text-7xl text-indigo-400/40" />
+                      </div>
+                    )}
                     <div className="absolute top-4 right-4">
                       <span className={`px-2 py-1 text-xs rounded-full ${
                         project.category === 'web' ? 'bg-blue-500/20 text-blue-300' :
                         project.category === 'mobile' ? 'bg-green-500/20 text-green-300' :
-                        project.category === 'ai' ? 'bg-purple-500/20 text-purple-300' :
+                        project.category === 'AI' ? 'bg-yellow-400/20 text-yellow-300' :
+                        project.category === 'Game' ? 'bg-green-500/20 text-green-300' :
                         'bg-orange-500/20 text-orange-300'
                       }`}>
                         {project.category}
@@ -240,8 +259,24 @@ export default function ProjectGallery() {
                 </div>
               </motion.div>
             ))}
-          </AnimatePresence>
-        </motion.div>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-12"
+          >
+            <div className="text-gray-400 text-lg">
+              No projects found in the &ldquo;{selectedCategory}&rdquo; category.
+            </div>
+            <button
+              onClick={() => setSelectedCategory('all')}
+              className="mt-4 px-6 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 transition-colors"
+            >
+              Show All Projects
+            </button>
+          </motion.div>
+        )}
 
         {/* Project Modal */}
         <AnimatePresence>
@@ -259,21 +294,36 @@ export default function ProjectGallery() {
                 animate="visible"
                 exit="exit"
                 onClick={(e) => e.stopPropagation()}
-                className="bg-gray-900 rounded-xl border border-white/20 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                className="bg-gray-900 rounded-xl border border-white/20 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative flex flex-col items-center justify-center"
+                tabIndex={-1}
+                ref={el => {
+                  if (el) el.scrollTop = 0;
+                }}
               >
+                {/* Close button */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-red-500/20 hover:bg-red-500/40 rounded-full flex items-center justify-center text-red-300 hover:text-red-100 transition-all duration-200 z-20 border border-red-400/30"
+                  aria-label="Close modal"
+                >
+                  <span className="text-lg font-bold">✕</span>
+                </button>
+
                 {/* Modal Header */}
-                <div className="relative h-64 bg-gradient-to-br from-indigo-500/20 to-purple-500/20">
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-8xl opacity-20">🚀</span>
-                  </div>
+                <div className="relative h-64 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 overflow-hidden flex items-center justify-center">
+                  {selectedProject.image && !selectedProject.image.startsWith('/placeholder-project') ? (
+                    <Image 
+                      src={selectedProject.image} 
+                      alt={selectedProject.title}
+                      width={600}
+                      height={256}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <FiBox className="text-8xl text-indigo-400/40" />
+                    </div>
+                  )}
                 </div>
 
                 {/* Modal Content */}
@@ -283,7 +333,8 @@ export default function ProjectGallery() {
                     <span className={`px-3 py-1 text-sm rounded-full ${
                       selectedProject.category === 'web' ? 'bg-blue-500/20 text-blue-300' :
                       selectedProject.category === 'mobile' ? 'bg-green-500/20 text-green-300' :
-                      selectedProject.category === 'ai' ? 'bg-purple-500/20 text-purple-300' :
+                      selectedProject.category === 'AI' ? 'bg-yellow-400/20 text-yellow-300' :
+                      selectedProject.category === 'Game' ? 'bg-green-500/20 text-green-300' :
                       'bg-orange-500/20 text-orange-300'
                     }`}>
                       {selectedProject.category}
