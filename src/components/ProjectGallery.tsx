@@ -35,7 +35,6 @@ const projects: Project[] = [
     image: "/rxclash.png",
     technologies: ["React","React Native", "Expo", "TypeScript"],
     githubUrl: "https://github.com/7onyx7/RxClash",
-    liveUrl: "https://",
     category: "mobile"
   },
   {
@@ -222,7 +221,7 @@ export default function ProjectGallery() {
                         project.category === 'web' ? 'bg-blue-500/20 text-blue-300' :
                         project.category === 'mobile' ? 'bg-green-500/20 text-green-300' :
                         project.category === 'AI' ? 'bg-yellow-400/20 text-yellow-300' :
-                        project.category === 'game' ? 'bg-green-500/20 text-green-300' :
+                        project.category === 'game' ? 'bg-purple-500/20 text-purple-300' :
                         'bg-orange-500/20 text-orange-300'
                       }`}>
                         {project.category}
@@ -334,7 +333,7 @@ export default function ProjectGallery() {
                       selectedProject.category === 'web' ? 'bg-blue-500/20 text-blue-300' :
                       selectedProject.category === 'mobile' ? 'bg-green-500/20 text-green-300' :
                       selectedProject.category === 'AI' ? 'bg-yellow-400/20 text-yellow-300' :
-                      selectedProject.category === 'game' ? 'bg-green-500/20 text-green-300' :
+                      selectedProject.category === 'game' ? 'bg-purple-500/20 text-purple-300' :
                       'bg-orange-500/20 text-orange-300'
                     }`}>
                       {selectedProject.category}
