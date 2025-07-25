@@ -40,9 +40,15 @@ export default function AboutMe({ bio, skills, achievements }: AboutMeProps) {
                  before:from-indigo-500 before:via-purple-500 before:to-pink-500
                  before:bg-gradient-to-br before:opacity-20"
     >
-      <motion.h2 variants={item}
+      <motion.h2 
+        variants={item}
+        whileHover={{ 
+          scale: 1.05,
+          transition: { duration: 0.3 }
+        }}
+        whileTap={{ scale: 0.98 }}
         className="relative mb-6 text-center text-4xl font-bold text-white
-                   dark:text-gray-100"
+                   dark:text-gray-100 cursor-default"
       >
         About Me
       </motion.h2>
@@ -55,8 +61,14 @@ export default function AboutMe({ bio, skills, achievements }: AboutMeProps) {
 
       <div className="grid gap-10 md:grid-cols-2">
         <div>
-          <motion.h3 variants={item}
-            className="mb-4 text-2xl font-semibold text-indigo-200 text-center"
+          <motion.h3 
+            variants={item}
+            whileHover={{ 
+              scale: 1.1,
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="mb-4 text-2xl font-semibold text-indigo-200 text-center cursor-default"
           >
             Skills
           </motion.h3>
@@ -74,8 +86,14 @@ export default function AboutMe({ bio, skills, achievements }: AboutMeProps) {
         </div>
 
         <div>
-          <motion.h3 variants={item}
-            className="mb-4 text-2xl font-semibold text-green-200 text-center"
+          <motion.h3 
+            variants={item}
+            whileHover={{ 
+              scale: 1.1,
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="mb-4 text-2xl font-semibold text-green-200 text-center cursor-default"
           >
             Achievements
           </motion.h3>

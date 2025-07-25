@@ -134,18 +134,29 @@ export default function ProjectGallery() {
   };
 
   return (
-    <section id="projects" className="min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="min-h-screen py-32 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+          <motion.h2 
+            className="text-4xl sm:text-5xl font-bold mb-8 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent cursor-default leading-tight"
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.98 }}
+            style={{ 
+              lineHeight: '1.1',
+              paddingBottom: '0.25rem'
+            }}
+          >
             My Projects
-          </h2>
+          </motion.h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             A showcase of my work spanning web development, mobile apps, AI integration, and more.
           </p>

@@ -179,9 +179,16 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+          <motion.h2 
+            className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent cursor-default"
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
+            whileTap={{ scale: 0.98 }}
+          >
             Get In Touch
-          </h2>
+          </motion.h2>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? I&apos;d love to hear from you.
             Let&apos;s create something amazing together!
@@ -196,19 +203,52 @@ export default function Contact() {
             viewport={{ once: true }}
             className="space-y-8 h-full flex flex-col min-h-[500px]"
           >
-            <h3 className="text-2xl font-semibold text-white mb-6">Let&apos;s Connect</h3>
+            <motion.h3 
+              className="text-2xl font-semibold text-white mb-6 cursor-default"
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Let&apos;s Connect
+            </motion.h3>
             
             {/* Contact Details */}
             <div className="space-y-6">
               {contactInfo.map((info, index) => {
                 const content = (
                   <>
-                    <div className="flex-shrink-0 w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-400">
+                    <motion.div 
+                      className="flex-shrink-0 w-12 h-12 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-400"
+                      whileHover={{ 
+                        scale: 1.1, 
+                        backgroundColor: "rgba(99, 102, 241, 0.3)",
+                        transition: { duration: 0.3 }
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       {info.icon}
-                    </div>
+                    </motion.div>
                     <div>
-                      <h4 className="text-white font-medium">{info.title}</h4>
-                      <p className="text-gray-400">{info.value}</p>
+                      <motion.h4 
+                        className="text-white font-medium"
+                        whileHover={{ 
+                          color: "#a78bfa",
+                          transition: { duration: 0.3 }
+                        }}
+                      >
+                        {info.title}
+                      </motion.h4>
+                      <motion.p 
+                        className="text-gray-400"
+                        whileHover={{ 
+                          color: "#d1d5db",
+                          transition: { duration: 0.3 }
+                        }}
+                      >
+                        {info.value}
+                      </motion.p>
                     </div>
                   </>
                 );
@@ -219,6 +259,11 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { duration: 0.3 }
+                    }}
+                    whileTap={{ scale: 0.98 }}
                     className="flex items-center space-x-4"
                   >
                     {info.link ? (
@@ -279,7 +324,18 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <h3 className="text-xl font-semibold text-white mb-6">Send Me a Message</h3>
+                <motion.h3 
+                  className="text-xl font-semibold text-white mb-6 cursor-default"
+                  whileHover={{ 
+                    scale: 1.05,
+                    color: "#a78bfa",
+                    textShadow: "0px 0px 6px rgba(167, 139, 250, 0.8)",
+                    transition: { duration: 0.3 }
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Send Me a Message
+                </motion.h3>
 
                 {/* Error Message */}
                 {submitError && (
