@@ -26,9 +26,9 @@ export default function Home() {
   const myBio = "Hello! I'm Onyx, a passionate Computer Science student focused on building a career in Software Engineering. Creating innovative solutions and studying new technologies is my passion. I love to learn and grow, and I'm always looking for bigger challenges to tackle.";
   const mySkills = ["React", "TypeScript", "Express.js", "Tailwind CSS", "PostgreSQL", "C++", "Java", "Python", " and more!"];
   const myAchievements = [
-    "Completed & deployed full-stack projects.",
-    "Winner of the Patient Safety Challenge at Uncommon Hacks 2025.",
-    "Completed a 6-month self-guided internship as an IT Desktop Support Technician.",
+    "💻Completed & deployed full-stack projects.📱",
+    "🏆Winner of the Patient Safety Technology Challenge at Uncommon Hacks 2025!🥇",
+    "👨‍💻Completed a 6-month self-guided internship as an IT Desktop Support Technician.🔧",
   ];
   
   return (

@@ -75,7 +75,7 @@ const projects: Project[] = [
     }
 ];
 
-const categories = ['all', 'web', 'mobile', 'AI', 'games', 'other'];
+const categories = ['all', 'web', 'mobile', 'AI', 'game', 'other'];
 
 export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState('all');
