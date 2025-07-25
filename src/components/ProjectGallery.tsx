@@ -13,7 +13,7 @@ interface Project {
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
-  category: 'web' | 'mobile' | 'AI' | 'Game' | 'other';
+  category: 'web' | 'mobile' | 'AI' | 'game' | 'other';
 }
 
 // Sample projects - you can replace these with your actual projects
@@ -35,7 +35,7 @@ const projects: Project[] = [
     image: "/rxclash.png",
     technologies: ["React","React Native", "Expo", "TypeScript"],
     githubUrl: "https://github.com/7onyx7/RxClash",
-    liveUrl: "https://rxclash.com",
+    liveUrl: "https://",
     category: "mobile"
   },
   {
@@ -54,7 +54,7 @@ const projects: Project[] = [
     image: "/placeholder-project-4.jpg",
     technologies: ["C++"],
     githubUrl: "https://github.com/7onyx7/minesweeper",
-    category: "Game"
+    category: "game"
   },
   {
     id: 5,
@@ -72,11 +72,11 @@ const projects: Project[] = [
         image: "/placeholder-project-6.jpg",
         technologies: ["C++", "OpenGL"],
         githubUrl: "https://github.com/7onyx7/OpenGLGame",
-        category: "Game"
+        category: "game"
     }
 ];
 
-const categories = ['all', 'web', 'mobile', 'AI', 'Game', 'other'];
+const categories = ['all', 'web', 'mobile', 'AI', 'games', 'other'];
 
 export default function ProjectGallery() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -222,7 +222,7 @@ export default function ProjectGallery() {
                         project.category === 'web' ? 'bg-blue-500/20 text-blue-300' :
                         project.category === 'mobile' ? 'bg-green-500/20 text-green-300' :
                         project.category === 'AI' ? 'bg-yellow-400/20 text-yellow-300' :
-                        project.category === 'Game' ? 'bg-green-500/20 text-green-300' :
+                        project.category === 'game' ? 'bg-green-500/20 text-green-300' :
                         'bg-orange-500/20 text-orange-300'
                       }`}>
                         {project.category}
@@ -334,7 +334,7 @@ export default function ProjectGallery() {
                       selectedProject.category === 'web' ? 'bg-blue-500/20 text-blue-300' :
                       selectedProject.category === 'mobile' ? 'bg-green-500/20 text-green-300' :
                       selectedProject.category === 'AI' ? 'bg-yellow-400/20 text-yellow-300' :
-                      selectedProject.category === 'Game' ? 'bg-green-500/20 text-green-300' :
+                      selectedProject.category === 'game' ? 'bg-green-500/20 text-green-300' :
                       'bg-orange-500/20 text-orange-300'
                     }`}>
                       {selectedProject.category}
