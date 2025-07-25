@@ -23,12 +23,12 @@ export default function Home() {
   const projectsParallax = useParallax(projectsRef, 75);
   const contactParallax = useParallax(contactRef, 50);
 
-  const myBio = "Hello! I'm Onyx, a passionate Computer Science student with a focus in Software Engineering. I enjoy creating innovative solutions and exploring new technologies.";
-  const mySkills = ["React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "C++", "Java", "Python", " and more!"];
+  const myBio = "Hello! I'm Onyx, a passionate Computer Science student focused on building a career in Software Engineering. Creating innovative solutions and studying new technologies is my passion. I love to learn and grow, and I'm always looking for bigger challenges to tackle.";
+  const mySkills = ["React", "TypeScript", "Express.js", "Tailwind CSS", "PostgreSQL", "C++", "Java", "Python", " and more!"];
   const myAchievements = [
-    "Completed and working on multiple projects.",
-    "Participated in hackathons and won Best Patient Safety Solution at Uncommon Hacks 2025!",
-    "Achieved top grades in Computer Science courses.",
+    "Completed & deployed full-stack projects.",
+    "Winner of the Patient Safety Challenge at Uncommon Hacks 2025.",
+    "Completed a 6-month self-guided internship as an IT Desktop Support Technician.",
   ];
   
   return (
