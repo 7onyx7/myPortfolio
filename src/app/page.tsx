@@ -23,7 +23,7 @@ export default function Home() {
   const projectsParallax = useParallax(projectsRef, 75);
   const contactParallax = useParallax(contactRef, 50);
 
-  const myBio = "Hello! I'm Onyx, a passionate Computer Science student focused on building a career in Software Engineering. Creating innovative solutions and studying new technologies is my passion. I love to learn and grow, and I'm always looking for bigger challenges to tackle.";
+  const myBio = "Hey there! I'm Onyx, a passionate Computer Science student focused on building a career in Software Engineering. Creating innovative solutions and studying new technologies is my passion. I love to learn and grow, and I'm always looking for bigger challenges to tackle.";
   const mySkills = ["React", "TypeScript", "Express.js", "Tailwind CSS", "PostgreSQL", "C++", "Java", "Python", " and more!"];
   const myAchievements = [
     "💻Completed & deployed full-stack projects.📱",
@@ -51,8 +51,8 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center min-h-screen p-8 pt-20 relative">
           <div className="flex flex-col items-center space-y-8">
             <ProfilePicture 
-              src="/onyx.jpg" 
-              alt="Onyx Profile Picture" 
+              src="/pfp.gif" 
+              alt="Onyx's Profile Picture" 
               size="lg"
             />
             <HelloWorld name="Onyx" />

@@ -10,7 +10,7 @@ export default function HelloWorld({ name }: HelloWorldProps) {
       className="text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 drop-shadow-[0_0_10px_rgba(129,140,248,0.7)] animate-fade-in-up transition-transform duration-500 hover:scale-110 cursor-default mb-16 pt-4"
       style={{ lineHeight: 1.25 }}
     >
-      Hello, I&#39;m {name}!
+      Welcome, I&#39;m {name}!
     </h1>
   );
 }
