@@ -45,9 +45,9 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
       </svg>
     ),
-    title: 'Coming soon',
-    value: 'Check us out on Notion',
-    link: 'https://vibeaistealthstartup.notion.site/index'
+    title: 'bantrwrld',
+    value: 'Join the waitlist',
+    link: 'https://www.bantrwrld.com'
   },
   {
     icon: (
@@ -295,7 +295,7 @@ export default function Contact() {
             >
               <h4 className="text-white font-medium mb-2">Currently Available</h4>
               <p className="text-gray-400 text-sm">
-                I&apos;m currently available for freelance projects and full-time opportunities.
+                I&apos;m currently available for internships and full-time opportunities.
                 Let&apos;s discuss how we can work together!
               </p>
             </motion.div>

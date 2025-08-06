@@ -20,31 +20,30 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
+    title: "bantrwrld",
+    description: "COMING SOON",
+    image: "/bw.png",
+    technologies: ["Next.js", "Express.js", "PostgreSQL", "Tailwind CSS"],
+    liveUrl: "https://bantrwrld.com",
+    category: "AI"
+  },
+  {
+    id: 2,
     title: "bantrhaus",
-    description: "A cozy chatroom platform for users to safely connect, vibe with new pals, and share their thoughts.",
+    description: "A cozy chatroom platform",
     image: "/bh.png",
     technologies: ["React", "Express.js", "PostgreSQL"],
-    githubUrl: "https://github.com/7onyx7/bantrhaus",
     liveUrl: "https://bantrhaus.com",
     category: "web"
   },
   {
-    id: 2,
+    id: 3,
     title: "RxClash (formerly MediScan)",
     description: "A Gemini powered AI medication analysis tool to inform patients and prevent medical mishaps.",
     image: "/rxclash.png",
     technologies: ["React","React Native", "Expo", "TypeScript"],
     githubUrl: "https://github.com/7onyx7/RxClash",
     category: "mobile"
-  },
-  {
-    id: 3,
-    title: "PROJECT FIRE",
-    description: "COMING SOON - Stealth AI App",
-    image: "/placeholder-project-3.jpg",
-    technologies: ["Python", "OpenAI API", "WebSocket", "Electron", "Node.js"],
-    githubUrl: "https://github.com/7onyx7/secret-project",
-    category: "AI"
   },
   {
     id: 4,
@@ -64,15 +63,17 @@ const projects: Project[] = [
     githubUrl: "https://github.com/7onyx7/secret-project",
     category: "other"
   },
-    {
-        id: 6,
-        title: "Sphere render",
-        description: "C++ sphere render",
-        image: "/placeholder-project-6.jpg",
-        technologies: ["C++", "OpenGL"],
-        githubUrl: "https://github.com/7onyx7/OpenGLGame",
-        category: "game"
-    }
+  
+  {
+      id: 6,
+      title: "Sphere render",
+      description: "C++ sphere render",
+      image: "/placeholder-project-6.jpg",
+      technologies: ["C++", "OpenGL"],
+      githubUrl: "https://github.com/7onyx7/OpenGLGame",
+      category: "game"
+  }
+
 ];
 
 const categories = ['all', 'web', 'mobile', 'AI', 'game', 'other'];
@@ -295,7 +296,8 @@ export default function ProjectGallery() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center"
+              style={{ pointerEvents: 'auto' }}
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
@@ -304,7 +306,7 @@ export default function ProjectGallery() {
                 animate="visible"
                 exit="exit"
                 onClick={(e) => e.stopPropagation()}
-                className="bg-gray-900 rounded-xl border border-white/20 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative flex flex-col items-center justify-center"
+                className="bg-gray-900 rounded-xl border border-white/20 w-full max-w-lg max-h-[80vh] overflow-y-auto relative flex flex-col items-center justify-center shadow-2xl"
                 tabIndex={-1}
                 ref={el => {
                   if (el) el.scrollTop = 0;
@@ -320,24 +322,21 @@ export default function ProjectGallery() {
                 </button>
 
                 {/* Modal Header */}
-                <div className="relative h-64 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 overflow-hidden flex items-center justify-center">
-                  {selectedProject.image && !selectedProject.image.startsWith('/placeholder-project') ? (
+                {selectedProject.image && !selectedProject.image.startsWith('/placeholder-project') ? (
+                  <div className="relative w-full bg-gradient-to-br from-indigo-500/20 to-purple-500/20 overflow-hidden flex items-center justify-center rounded-t-xl" style={{ minHeight: 0, maxHeight: 240 }}>
                     <Image 
                       src={selectedProject.image} 
                       alt={selectedProject.title}
-                      width={600}
-                      height={256}
-                      className="w-full h-full object-cover"
+                      width={400}
+                      height={240}
+                      className="max-h-60 w-auto object-contain mx-auto"
+                      style={{ maxHeight: 240 }}
                     />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <FiBox className="text-8xl text-indigo-400/40" />
-                    </div>
-                  )}
-                </div>
+                  </div>
+                ) : null}
 
                 {/* Modal Content */}
-                <div className="p-8">
+                <div className="p-6 w-full">
                   <div className="flex items-center gap-4 mb-4">
                     <h3 className="text-2xl font-bold text-white">{selectedProject.title}</h3>
                     <span className={`px-3 py-1 text-sm rounded-full ${
