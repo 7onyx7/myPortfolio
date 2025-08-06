@@ -2,8 +2,10 @@
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
 
+import { ReactNode } from 'react';
+
 interface AboutMeProps {
-  bio: string;
+  bio: React.ReactNode;
   skills: string[];
   achievements: string[];
 }

@@ -11,7 +11,7 @@ import ScrollIndicator from '@/components/ScrollIndicator';
 import ClientStarryBackground from '@/components/ClientStarryBackground';
 
 export default function Home() {
-  const myBio = "Hey there! I'm Onyx, a passionate Computer Science student focused on building a career in Software Engineering. Creating innovative solutions and studying new technologies is my passion. I love to learn and grow, and I'm always looking for bigger challenges to tackle.";
+  const myBio = "Hi, I’m Onyx — a driven software engineer and solo founder with a passion for building innovative products from the ground up. I thrive on solving complex problems, leading projects end-to-end, and constantly pushing the boundaries of what’s possible in tech. I’m always seeking new challenges and opportunities to create real impact through code and leadership.";
   const mySkills = ["React", "Next.js", "Express.js", "Tailwind CSS", "PostgreSQL", "C++", "Java", "Python"];
   const myAchievements = [
     "💻Solo Founder & SWE @ bantrwrld📱",
