@@ -1,10 +1,12 @@
+
 # Onyx Portfolio
 
-A React/Next.js portfolio showcasing my projects, skills, and a 3D hero section powered by React Three Fiber.
+Modern portfolio for Onyx — solo founder & software engineer. Built with Next.js, React, and Tailwind CSS. Showcasing projects, skills, and a dynamic, interactive UI.
+
 
 ## 🚀 Live Demo
 
-https://your-portfolio.vercel.app
+https://7onyx7.vercel.app
 
 ## 📝 Table of Contents
 
@@ -15,40 +17,48 @@ https://your-portfolio.vercel.app
 - [Usage](#usage)
 - [License](#license)
 
+
 ## 📖 About
 
-I’m a community-college CS student building a bridge to a 4‑year Computer Science degree. This site highlights my work in C++, Node.js, React, and WebGL.
+Hi, I’m Onyx—a driven software engineer and solo founder with a passion for building innovative products from the ground up. I thrive on solving complex problems, leading projects end-to-end, and constantly pushing the boundaries of what’s possible in tech. This portfolio highlights my work in full-stack development, 3D graphics, and product leadership.
+
 
 ## 🧰 Tech Stack
 
-- **Next.js** – React framework with SSG/SSR
+- **Next.js** – React framework (SSG/SSR)
 - **TypeScript** – Static typing
-- **Tailwind CSS** – Utility‑first styling
+- **Tailwind CSS** – Utility-first CSS
 - **Framer Motion** – Animations
 - **React Three Fiber** – 3D graphics
+- **EmailJS** – Contact form integration
 - **Vercel** – Deployment
+
 
 ## ✨ Features
 
-- **3D Hero**: Interactive model in the landing section.
-- **Projects Gallery**: Dynamic cards driven by local JSON.
-- **MDX Blog**: Write posts in Markdown + JSX.
-- **Responsive Design**: Mobile‑first layout.
-- **SEO optimized**: Meta tags, sitemap, image optimization.
+- **Animated Hero & Typewriter Effect**: Eye-catching intro with dynamic text.
+- **Project Gallery**: Filterable, animated project cards with modals.
+- **Contact Form**: EmailJS-powered, with validation and anti-spam best practices.
+- **Responsive Design**: Mobile-first, looks great on any device.
+- **Dark Mode**: Modern, accessible color scheme.
+- **3D Graphics**: Interactive visuals with React Three Fiber.
+- **SEO Optimized**: Meta tags, sitemap, and image optimization.
+
 
 ## 🚦 Getting Started
 
-1. Clone & install  
+1. **Clone & install**
    ```bash
-   git clone https://github.com/YourUsername/onyxPortfolio.git
-   cd onyxPortfolio
+   git clone https://github.com/7onyx7/myPortfolio.git
+   cd myPortfolio
    npm install
    ```
-2. Copy environment file  
+2. **Copy environment file**
    ```bash
    cp .env.example .env.local
    ```
-3. Fill in your variables in `.env.local`.
+3. **Fill in your variables** in `.env.local` (see EmailJS setup).
+
 
 ## 🚀 Available Scripts
 
@@ -57,20 +67,28 @@ I’m a community-college CS student building a bridge to a 4‑year Computer Sc
 - `npm run start` – Run the production build locally
 - `npm run lint` – Run ESLint
 - `npm run format` – Run Prettier
-- `npm run test` – Run unit tests (Jest/React Testing Lib)
+
 
 ## 🗂 Project Structure
 
 ```
-├── components/      # Reusable React components
-├── pages/           # Next.js page routes
-├── public/          # Static assets
-├── styles/          # Global & module CSS/Tailwind imports
-├── utils/           # Helper functions & constants
-├── DEV.md           # Developer guide
-└── README.md        # Project overview
+├── src/
+│   ├── app/           # Next.js app directory
+│   ├── components/    # Reusable React components
+│   └── ...
+├── public/            # Static assets
+├── README.md          # Project overview
+├── DEV.md             # Developer guide
+└── ...
 ```
+
+
+## 📬 Contact
+
+- [LinkedIn](https://www.linkedin.com/in/your-linkedin)
+- [bantrwrld](https://www.bantrwrld.com)
+- [GitHub](https://github.com/7onyx7)
 
 ## 📄 License
 
-My License 🔥
+MIT License
