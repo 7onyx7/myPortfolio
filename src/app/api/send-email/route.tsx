@@ -24,14 +24,9 @@ export async function POST(request: NextRequest) {
         const sanitizedSubject = subject.trim();
         const sanitizedMessage = message.trim().replace(/\n/g, '<br>');
 
-        // Check if CONTACT_EMAIL is set
-        if (!process.env.CONTACT_EMAIL) {
-            return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
-        }
-
         const { data, error } = await resend.emails.send({
             from: 'onboarding@resend.dev',
-            to: process.env.CONTACT_EMAIL as string,
+            to: 'bantrwrld@gmail.com',
             subject: `Portfolio Contact: ${sanitizedSubject}`,
             html: `
               <p><strong>Name:</strong> ${sanitizedName}</p>
@@ -42,12 +37,13 @@ export async function POST(request: NextRequest) {
         });
 
         if (error) {
-            return NextResponse.json({ error: error.message }, { status: 500 });
+            console.error('Resend API error:', error);
+            return NextResponse.json({ error: 'Failed to send email. Please try again later.' }, { status: 500 });
         }
 
         return NextResponse.json({ success: true, data });
     } catch (err) {
         console.error('Email send error:', err);
-        return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+        return NextResponse.json({ error: 'An error occurred while sending your message. Please try again later.' }, { status: 500 });
     }
 } 
