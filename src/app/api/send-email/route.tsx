@@ -24,9 +24,14 @@ export async function POST(request: NextRequest) {
         const sanitizedSubject = subject.trim();
         const sanitizedMessage = message.trim().replace(/\n/g, '<br>');
 
+        // Check if CONTACT_EMAIL is set
+        if (!process.env.CONTACT_EMAIL) {
+            return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
+        }
+
         const { data, error } = await resend.emails.send({
             from: 'onboarding@resend.dev',
-            to: process.env.CONTACT_EMAIL,
+            to: process.env.CONTACT_EMAIL as string,
             subject: `Portfolio Contact: ${sanitizedSubject}`,
             html: `
               <p><strong>Name:</strong> ${sanitizedName}</p>
