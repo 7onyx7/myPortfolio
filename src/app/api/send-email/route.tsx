@@ -24,9 +24,15 @@ export async function POST(request: NextRequest) {
         const sanitizedSubject = subject.trim();
         const sanitizedMessage = message.trim().replace(/\n/g, '<br>');
 
+        // Check if required environment variables are set
+        if (!process.env.FROM_EMAIL || !process.env.CONTACT_EMAIL) {
+            console.error('Missing environment variables: FROM_EMAIL or CONTACT_EMAIL');
+            return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+        }
+
         const { data, error } = await resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: 'bantrwrld@gmail.com',
+            from: process.env.FROM_EMAIL as string,
+            to: process.env.CONTACT_EMAIL as string,
             subject: `Portfolio Contact: ${sanitizedSubject}`,
             html: `
               <p><strong>Name:</strong> ${sanitizedName}</p>
