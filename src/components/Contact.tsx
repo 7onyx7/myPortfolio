@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
 
 interface FormData {
   name: string;
@@ -111,31 +110,17 @@ export default function Contact() {
     setSubmitError('');
 
     try {
-      // EmailJS configuration
-      const serviceId = process.env.nextPublicEmailjsServiceId;
-      const templateId = process.env.nextPublicEmailjsTemplateId;
-      const publicKey = process.env.nextPublicEmailjsPublicKey;
+      // Send email via Resend API route
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error('EmailJS configuration is missing. Please check your environment variables.');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send email');
       }
-
-      // Prepare template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_name: 'Romeo', // Your name
-      };
-
-      // Send email using EmailJS
-      await emailjs.send(
-        serviceId,
-        templateId,
-        templateParams,
-        publicKey
-      );
 
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
