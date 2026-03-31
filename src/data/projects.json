@@ -1,0 +1,75 @@
+[
+  {
+    "id": "nightai",
+    "title": "NightAI",
+    "description": "AI voice agents that answer calls, book appointments, and follow up — 24/7.",
+    "longDescription": "A done-for-you AI agent platform that runs your front office around the clock. NightAI answers inbound calls with natural voice IVR, books appointments with calendar sync and double-booking protection, sends email reminders, and transfers to a human when needed. Built with Retell AI, Twilio, and OpenAI — live in days, not months.",
+    "techStack": ["HTML", "CSS", "JavaScript", "Retell AI", "Twilio", "OpenAI"],
+    "category": "ai",
+    "featured": true,
+    "liveUrl": "https://www.getnightai.com"
+  },
+  {
+    "id": "bantrwrld",
+    "title": "bantrwrld",
+    "description": "A next-generation social platform powered by AI.",
+    "longDescription": "A comprehensive social platform integrating AI-powered features for a next-generation user experience. Built from the ground up with scalability and performance in mind.",
+    "techStack": ["Next.js", "Express.js", "PostgreSQL", "Tailwind CSS"],
+    "category": "ai",
+    "featured": true,
+    "liveUrl": "https://bantrwrld.com",
+    "imageUrl": "/bw.png"
+  },
+  {
+    "id": "bantrhaus",
+    "title": "bantrhaus",
+    "description": "A cozy chatroom platform for real-time conversations.",
+    "longDescription": "A real-time chatroom platform designed for seamless, cozy conversations. Features persistent rooms, user presence, and a clean interface built for community engagement.",
+    "techStack": ["React", "Express.js", "PostgreSQL"],
+    "category": "web",
+    "featured": false,
+    "liveUrl": "https://bantrhaus.com",
+    "imageUrl": "/bh.png"
+  },
+  {
+    "id": "rxclash",
+    "title": "RxClash",
+    "description": "AI-powered medication analysis tool to prevent medical mishaps.",
+    "longDescription": "A Gemini-powered AI medication analysis tool designed to inform patients and prevent dangerous drug interactions. Winner of the Patient Safety Technology Challenge at Uncommon Hacks 2025.",
+    "techStack": ["React", "React Native", "Expo", "TypeScript"],
+    "category": "ai",
+    "featured": true,
+    "githubUrl": "https://github.com/7onyx7/RxClash",
+    "imageUrl": "/rxclash.png"
+  },
+  {
+    "id": "minesweeper",
+    "title": "C++ Minesweeper",
+    "description": "A classic Minesweeper game built in C++ with console UI.",
+    "longDescription": "A faithful recreation of the classic Minesweeper game built entirely in C++ with a console-based user interface. Demonstrates strong fundamentals in algorithms and game logic.",
+    "techStack": ["C++"],
+    "category": "fullstack",
+    "featured": false,
+    "githubUrl": "https://github.com/7onyx7/minesweeper"
+  },
+  {
+    "id": "ezpc",
+    "title": "EZ PC",
+    "description": "Desktop app helping new PC gamers optimize their gaming experience.",
+    "longDescription": "An Electron-based desktop application designed for new PC gamers to easily optimize their system settings and gaming experience without technical knowledge.",
+    "techStack": ["Electron", "TypeScript", "Node.js"],
+    "category": "fullstack",
+    "featured": false,
+    "githubUrl": "https://github.com/7onyx7/secret-project"
+  },
+  {
+    "id": "sphere-render",
+    "title": "Sphere Render",
+    "description": "Real-time 3D sphere rendering with OpenGL.",
+    "longDescription": "A C++ and OpenGL powered real-time 3D sphere renderer demonstrating graphics programming fundamentals including lighting, shading, and camera controls.",
+    "techStack": ["C++", "OpenGL"],
+    "category": "fullstack",
+    "featured": false,
+    "githubUrl": "https://github.com/7onyx7/OpenGLGame"
+  }
+]

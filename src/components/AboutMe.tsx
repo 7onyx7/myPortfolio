@@ -1,116 +1,132 @@
 'use client';
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import ScrollRevealText from './ScrollRevealText';
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiPostgresql,
+  SiNodedotjs,
+  SiPython,
+  SiCplusplus,
+} from 'react-icons/si';
 
+const techStack = [
+  { name: 'React', icon: SiReact },
+  { name: 'Next.js', icon: SiNextdotjs },
+  { name: 'TypeScript', icon: SiTypescript },
+  { name: 'Tailwind', icon: SiTailwindcss },
+  { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Python', icon: SiPython },
+  { name: 'C++', icon: SiCplusplus },
+];
 
-interface AboutMeProps {
-  bio: React.ReactNode;
-  skills: string[];
-  achievements: string[];
-}
-
-const container: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { 
-      when: "beforeChildren", 
-      staggerChildren: 0.1 
-    } 
-  }
-};
-
-const item: Variants = {
+const techVariants = {
   hidden: { opacity: 0, y: 20 },
-  show:  { opacity: 1, y: 0 }
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.4 + i * 0.08,
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    },
+  }),
 };
 
-export default function AboutMe({ bio, skills, achievements }: AboutMeProps) {
+export default function AboutMe() {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-10% 0px' });
+
   return (
-    <motion.section
-      variants={container}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.3 }}
-      className="mx-auto my-16 max-w-3xl p-8 bg-white/10 dark:bg-black/20
-                 backdrop-blur-lg rounded-2xl border border-white/20 dark:border-white/10
-                 relative overflow-hidden
-                 before:absolute before:inset-0 before:pointer-events-none
-                 before:rounded-2xl 
-                 before:from-indigo-500 before:via-purple-500 before:to-pink-500
-                 before:bg-gradient-to-br before:opacity-20"
-    >
-      <motion.h2 
-        variants={item}
-        whileHover={{ 
-          scale: 1.05,
-          transition: { duration: 0.3 }
-        }}
-        whileTap={{ scale: 0.98 }}
-        className="relative mb-6 text-center text-4xl font-bold text-white
-                   dark:text-gray-100 cursor-default"
-      >
-        About Me
-      </motion.h2>
-
-      <motion.p variants={item}
-        className="mx-auto mb-12 max-w-2xl text-center text-lg text-gray-200"
-      >
-        {bio}
-      </motion.p>
-
-      <div className="grid gap-10 md:grid-cols-2">
-        <div>
-          <motion.h3 
-            variants={item}
-            whileHover={{ 
-              scale: 1.1,
-              transition: { duration: 0.3 }
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="mb-4 text-2xl font-semibold text-indigo-200 text-center cursor-default"
+    <section id="about" className="relative z-10 py-32 px-6 sm:px-8">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <div className="mb-20 text-center">
+          <ScrollRevealText
+            as="h2"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight"
           >
-            Skills
-          </motion.h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {skills.map((skill, i) => (
-              <motion.span key={i} variants={item}
-                whileHover={{ scale: 1.1, backgroundColor: 'rgba(99,102,241,0.25)' }}
-                className="rounded-full bg-indigo-200/20 px-4 py-1 text-sm font-medium
-                           text-indigo-100 backdrop-blur-sm transition-colors"
-              >
-                {skill}
-              </motion.span>
-            ))}
-          </div>
+            About Me
+          </ScrollRevealText>
+          <motion.div
+            className="mt-4 mx-auto w-16 h-[1px]"
+            style={{ backgroundColor: 'var(--accent)' }}
+            initial={{ scaleX: 0 }}
+            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          />
         </div>
 
-        <div>
-          <motion.h3 
-            variants={item}
-            whileHover={{ 
-              scale: 1.1,
-              transition: { duration: 0.3 }
-            }}
-            whileTap={{ scale: 0.95 }}
-            className="mb-4 text-2xl font-semibold text-green-200 text-center cursor-default"
-          >
-            Achievements
-          </motion.h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {achievements.map((ach, i) => (
-              <motion.span key={i} variants={item}
-                whileHover={{ scale: 1.05, rotate: 1 }}
-                className="rounded-full bg-green-200/20 px-4 py-1 text-sm font-medium
-                           text-green-100 backdrop-blur-sm transition-transform"
-              >
-                {ach}
-              </motion.span>
-            ))}
+        <div className="grid md:grid-cols-2 gap-16 items-start">
+          {/* Left — Narrative */}
+          <div>
+            <ScrollRevealText
+              as="p"
+              className="text-lg sm:text-xl leading-relaxed mb-6"
+              delay={0.2}
+            >
+              Romeo here — a software developer and solo founder who builds websites, AI agents, and full-stack applications for clients who want results.
+            </ScrollRevealText>
+            <ScrollRevealText
+              as="p"
+              className="text-base leading-relaxed mb-6"
+              delay={0.4}
+              staggerDelay={0.02}
+            >
+              I thrive on solving complex problems and shipping products that look incredible and perform even better. From sleek landing pages to intelligent automation — if you can dream it, I can build it.
+            </ScrollRevealText>
+            <ScrollRevealText
+              as="p"
+              className="text-base leading-relaxed"
+              delay={0.6}
+              staggerDelay={0.02}
+            >
+              Winner of the Patient Safety Technology Challenge at Uncommon Hacks 2025. Based in Chicago — building for the world.
+            </ScrollRevealText>
+          </div>
+
+          {/* Right — Tech Stack Grid */}
+          <div>
+            <motion.p
+              className="text-xs uppercase tracking-widest mb-8"
+              style={{ color: 'var(--accent)' }}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
+              Tech Stack
+            </motion.p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {techStack.map((tech, i) => (
+                <motion.div
+                  key={tech.name}
+                  className="glass rounded-xl p-4 flex flex-col items-center gap-3 group"
+                  custom={i}
+                  variants={techVariants}
+                  initial="hidden"
+                  animate={isInView ? 'visible' : 'hidden'}
+                  whileHover={{ y: -2, borderColor: 'rgba(201,169,110,0.2)' }}
+                >
+                  <tech.icon
+                    className="w-6 h-6 transition-colors"
+                    style={{ color: 'var(--fg-muted)' }}
+                  />
+                  <span
+                    className="text-xs font-medium"
+                    style={{ color: 'var(--fg-muted)' }}
+                  >
+                    {tech.name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

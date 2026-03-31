@@ -1,71 +1,103 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens ─── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --bg: #050505;
+  --fg: #f0ece2;
+  --fg-muted: #8a8a8a;
+  --accent: #c9a96e;
+  --accent-light: #e2c891;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-hover: rgba(255, 255, 255, 0.08);
 
-:root {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Ambient section colors — driven by JS on scroll */
+  --ambient-r: 201;
+  --ambient-g: 169;
+  --ambient-b: 110;
+  --ambient-opacity: 0.12;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ─── */
+html {
+  background: var(--bg);
 }
 
 body {
-  background: #000 !important;
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-scroll-behavior: smooth;
+/* ─── Selection ─── */
+::selection {
+  background: rgba(201, 169, 110, 0.3);
+  color: var(--fg);
 }
 
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.3);
-  border-radius: 4px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+  background: rgba(201, 169, 110, 0.3);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255,255,255,0.5);    
+  background: rgba(201, 169, 110, 0.5);
 }
 
 * {
-  scrollbar-width:thin;
-  scrollbar-color:rgba(255,255,255,0.3) rgba(255,255,255,0.05); 
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 169, 110, 0.3) transparent;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ─── Cursor (hide default when custom cursor is active) ─── */
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
 }
 
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out forwards;
+/* ─── Glassmorphism Utilities ─── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+.glass:hover {
+  background: var(--glass-hover);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Text Gradient ─── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
