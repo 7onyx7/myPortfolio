@@ -6,7 +6,7 @@ import ScrollRevealText from './ScrollRevealText';
 
 const socials = [
   { icon: FiGithub, href: 'https://github.com/7onyx7', label: 'GitHub' },
-  { icon: FiLinkedin, href: '#', label: 'LinkedIn' },
+  { icon: FiLinkedin, href: 'https://www.linkedin.com/in/romeoshamoun', label: 'LinkedIn' },
 ];
 
 export default function CallToAction() {
