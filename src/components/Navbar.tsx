@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useLenis } from '@/hooks/useLenis';
 
 const navItems = [
   { name: 'Work', href: '#work' },
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const lenis = useLenis();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +39,13 @@ export default function Navbar() {
 
   const scrollToSection = (href: string) => {
     const el = document.getElementById(href.slice(1));
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (el) {
+      if (lenis) {
+        lenis.scrollTo(el, { offset: -100 });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
     setIsOpen(false);
   };
 
