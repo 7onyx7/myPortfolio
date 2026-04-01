@@ -100,7 +100,7 @@ export default function CallToAction() {
           transition={{ delay: 1.2, duration: 0.6 }}
         >
           <p className="text-xs" style={{ color: 'var(--fg-muted)' }}>
-            &copy; {new Date().getFullYear()} Romeo &middot; Built with Next.js
+            &copy; {new Date().getFullYear()} Romeo Shamoun &middot; Built with Next.js
           </p>
         </motion.div>
       </div>

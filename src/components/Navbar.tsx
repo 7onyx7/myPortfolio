@@ -70,7 +70,7 @@ export default function Navbar() {
             whileHover={{ opacity: 0.7 }}
             data-magnetic
           >
-            Romeo
+            Romeo Shamoun
           </motion.button>
 
           {/* Desktop Nav */}

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Romeo — Software Developer",
+  title: "Romeo Shamoun — Software Developer",
   description:
     "I build websites, AI agents, and full-stack applications. Available worldwide.",
   openGraph: {

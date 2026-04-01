@@ -64,7 +64,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          Romeo
+          Romeo Shamoun
         </motion.h1>
 
         {/* Typing effect */}
