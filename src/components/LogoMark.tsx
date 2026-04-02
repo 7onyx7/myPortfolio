@@ -2,135 +2,147 @@
 import { motion } from 'framer-motion';
 
 /**
- * Premium "R" logomark — sharp geometric letterform inside a cut-corner frame.
+ * RS interlocking monogram — side-by-side letterforms sharing overlap zone.
  *
- * R construction (100×100 viewBox):
- *   Stem   — x 22–34, y 18–82  (12px wide)
- *   Bowl   — closed D-shape: top of stem → right arc peak (x 68, y 35) → back
- *   Leg    — diagonal spur from bowl-base (34, 50) → bottom-right (71, 82)
+ * ViewBox: 0 0 120 100  (1.2 : 1 aspect ratio)
+ * SVG element: width = size * 1.2, height = size
  *
- * All sub-paths are explicit point-by-point so the shape is crisp.
+ * R (x: 10–62, y: 10–90):
+ *   Stem   — x 10–24, y 10–90
+ *   Bowl   — D-shape: from (36,10) arcing to peak x≈62 and back to (36,52)
+ *   Leg    — diagonal from (36,52) → (62,90) outer, (48,90)→(24,55) inner
+ *   Counter— evenodd hole: (24,20)→(34,20)→arc→(34,45)→(24,45)
+ *
+ * S (x: 46–80, y: 13–87) — thick stroked path:
+ *   Upper bowl: (80,13) curls left to inflection (62,50)
+ *   Lower bowl: (62,50) curls right to terminal (46,87)
+ *
+ * Interlock: R's bowl right-edge (x≈55) meets S's upper-left spine (x≈48–56)
+ * at y≈20–45. R drawn on top — bowl silhouette clips over S's stroke.
+ * Second overlap: R's leg (x≈46–60) clips over S's lower terminal (x≈39–53)
+ * at y≈75–90. Two interlock points give the monogram visual depth.
  */
 export default function LogoMark({ size = 36 }: { size?: number }) {
-  // Unique IDs per instance to avoid SVG defs collisions in the DOM
   const uid = 'rs';
+  const w = size * 1.2;
+  const h = size;
 
-  /* ── R letterform: single compound path (even-odd fill) ──────────────────
-     Sub-path 1: full outer silhouette (stem + bowl outer edge + leg outer edge)
-     Sub-path 2: bowl inner cutout (makes the counter)
-     Using fill-rule="evenodd" punches the counter out automatically.
-  ─────────────────────────────────────────────────────────────────────────── */
-
-  // Outer silhouette — traced clockwise
-  // Stem left side up, across top, bowl outer arc down to leg, leg to bottom, back up stem.
-  const outerSilhouette = [
-    'M 22 82',          // bottom-left of stem
-    'L 22 18',          // up stem left edge
-    'L 46 18',          // top cap — rightward to where bowl starts
-    // Bowl outer arc (top-right curve): cubic bezier
-    // control points push it to a tight D-shape, peak x≈69
-    'C 80 18, 80 52, 46 52', // outer bowl arc — top → bottom junction
-    // now at bowl-base (46, 52) — ride the leg outward
-    'L 71 82',          // leg bottom-right tip
-    'L 57 82',          // narrow the leg — inner bottom
-    'L 34 55',          // leg inner diagonal back up
-    'L 34 82',          // down the stem right side to bottom
+  // ── R letterform (filled, evenodd) ───────────────────────────────────────
+  // Outer silhouette — clockwise
+  const rOuter = [
+    'M 10 90',           // bottom-left of stem
+    'L 10 10',           // up left edge
+    'L 36 10',           // right along top to bowl attachment
+    'C 62 10, 62 52, 36 52', // bowl outer arc (D-shape, peaks at x≈62)
+    'L 62 90',           // leg outer diagonal
+    'L 48 90',           // across leg bottom (inner tip)
+    'L 24 55',           // inner diagonal back up toward stem
+    'L 24 90',           // down right edge of stem to bottom
     'Z',
   ].join(' ');
 
-  // Bowl counter (inner cutout) — counter-clockwise so evenodd punches it out
-  // Sits inside the bowl: from (34,26) across to right curve back to (34,44)
-  const bowlCounter = [
-    'M 34 44',          // bottom of counter (inner bowl base)
-    'L 34 26',          // up inner-left
-    'L 44 26',          // rightward
-    // inner arc — smaller D, counter-clockwise
-    'C 62 26, 62 44, 44 44',
+  // Bowl counter — same winding (evenodd handles the cutout regardless of direction)
+  const rCounter = [
+    'M 24 45',           // bottom-left of counter
+    'L 24 20',           // up inner-left edge
+    'L 34 20',           // right along counter top
+    'C 50 20, 50 45, 34 45', // inner arc (smaller D)
     'Z',
   ].join(' ');
 
-  const rPath = `${outerSilhouette} ${bowlCounter}`;
+  const rPath = `${rOuter} ${rCounter}`;
+
+  // ── S letterform (stroked centerline) ────────────────────────────────────
+  // Upper bowl: (80,13) → C(44,9, 36,48, 62,50) — curls leftward to inflection
+  // Lower bowl: (62,50) → C(92,52, 86,91, 46,87) — swings right, ends lower-left
+  // strokeLinecap="round" softens the terminals for a premium feel
+  const sPath = 'M 80 13 C 44 9, 36 48, 62 50 C 92 52, 86 91, 46 87';
 
   return (
     <motion.div
-      style={{ width: size, height: size, position: 'relative', flexShrink: 0 }}
+      style={{ width: w, height: h, position: 'relative', flexShrink: 0 }}
       whileHover="hovered"
       initial="idle"
     >
       {/* Ambient glow behind the mark */}
       <motion.div
         variants={{
-          idle: { opacity: 0, scale: 0.75 },
-          hovered: { opacity: 1, scale: 1.2 },
+          idle:    { opacity: 0, scale: 0.75 },
+          hovered: { opacity: 1, scale: 1.15 },
         }}
         transition={{ duration: 0.45, ease: 'easeOut' }}
         style={{
           position: 'absolute',
-          inset: -8,
+          inset: -10,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(201,169,110,0.4) 0%, transparent 68%)',
-          filter: 'blur(8px)',
+          background: 'radial-gradient(ellipse, rgba(201,169,110,0.45) 0%, transparent 68%)',
+          filter: 'blur(12px)',
           pointerEvents: 'none',
         }}
       />
 
       <svg
-        width={size}
-        height={size}
-        viewBox="0 0 100 100"
+        width={w}
+        height={h}
+        viewBox="0 0 120 100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{ display: 'block', overflow: 'visible' }}
       >
         <defs>
-          {/* Gold gradient — top-light to bottom-shadow */}
-          <linearGradient id={`${uid}-g`} x1="22" y1="18" x2="71" y2="82" gradientUnits="userSpaceOnUse">
-            <stop offset="0%"   stopColor="#edd99a" />
-            <stop offset="40%"  stopColor="#c9a96e" />
-            <stop offset="100%" stopColor="#8a6030" />
+          {/* Diagonal gold gradient spanning full RS mark (top-left bright → bottom-right deep) */}
+          <linearGradient id={`${uid}-g`} x1="10" y1="10" x2="110" y2="90" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stopColor="#ede0a8" />
+            <stop offset="38%"  stopColor="#c9a96e" />
+            <stop offset="100%" stopColor="#7a5422" />
           </linearGradient>
 
-          {/* Soft drop-shadow on the R */}
-          <filter id={`${uid}-s`} x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#c9a96e" floodOpacity="0.5" />
+          {/* Softer second gradient for the S stroke to read distinctly */}
+          <linearGradient id={`${uid}-gs`} x1="46" y1="13" x2="80" y2="87" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stopColor="#d4b87a" />
+            <stop offset="100%" stopColor="#8a5e2a" />
+          </linearGradient>
+
+          {/* Drop shadow shared by both letterforms */}
+          <filter id={`${uid}-s`} x="-25%" y="-25%" width="150%" height="150%">
+            <feDropShadow dx="0" dy="1.5" stdDeviation="2.5" floodColor="#c9a96e" floodOpacity="0.55" />
           </filter>
 
-          {/* Diagonal shine sweep (frame overlay) */}
+          {/* Diagonal shine sweep overlay */}
           <linearGradient id={`${uid}-sh`} x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
             <stop offset="0%"   stopColor="white" stopOpacity="0" />
-            <stop offset="42%"  stopColor="white" stopOpacity="0" />
-            <stop offset="50%"  stopColor="white" stopOpacity="0.18" />
-            <stop offset="58%"  stopColor="white" stopOpacity="0" />
+            <stop offset="40%"  stopColor="white" stopOpacity="0" />
+            <stop offset="50%"  stopColor="white" stopOpacity="0.2" />
+            <stop offset="60%"  stopColor="white" stopOpacity="0" />
             <stop offset="100%" stopColor="white" stopOpacity="0" />
           </linearGradient>
 
           {/* Clip to frame shape */}
           <clipPath id={`${uid}-clip`}>
-            <path d="M16 4 L84 4 L96 16 L96 84 L84 96 L16 96 L4 84 L4 16 Z" />
+            <path d="M18 3 L102 3 L117 18 L117 82 L102 97 L18 97 L3 82 L3 18 Z" />
           </clipPath>
         </defs>
 
-        {/* ── Background fill inside the frame ── */}
+        {/* ── Cut-corner frame — subtle background fill ── */}
         <path
-          d="M16 4 L84 4 L96 16 L96 84 L84 96 L16 96 L4 84 L4 16 Z"
-          fill="rgba(201,169,110,0.05)"
+          d="M18 3 L102 3 L117 18 L117 82 L102 97 L18 97 L3 82 L3 18 Z"
+          fill="rgba(201,169,110,0.04)"
         />
 
         {/* ── Cut-corner frame border ── */}
         <motion.path
-          d="M16 4 L84 4 L96 16 L96 84 L84 96 L16 96 L4 84 L4 16 Z"
+          d="M18 3 L102 3 L117 18 L117 82 L102 97 L18 97 L3 82 L3 18 Z"
           fill="none"
           variants={{
-            idle:    { stroke: 'rgba(201,169,110,0.22)', strokeWidth: 1.2 },
-            hovered: { stroke: 'rgba(201,169,110,0.7)',  strokeWidth: 1.2 },
+            idle:    { stroke: 'rgba(201,169,110,0.2)',  strokeWidth: 1.1 },
+            hovered: { stroke: 'rgba(201,169,110,0.75)', strokeWidth: 1.1 },
           }}
           transition={{ duration: 0.3 }}
         />
 
-        {/* ── Corner accent marks (top-left & bottom-right) ── */}
-        {/* top-left corner tick  */}
+        {/* ── Corner accent ticks (top-left & bottom-right) ── */}
         <motion.polyline
-          points="4,24 4,16 12,4"
+          points="3,28 3,18 13,3"
           fill="none"
           variants={{
             idle:    { stroke: 'rgba(201,169,110,0)', strokeWidth: 1.5 },
@@ -139,9 +151,8 @@ export default function LogoMark({ size = 36 }: { size?: number }) {
           transition={{ duration: 0.25 }}
           strokeLinecap="round"
         />
-        {/* bottom-right corner tick */}
         <motion.polyline
-          points="96,76 96,84 88,96"
+          points="117,72 117,82 107,97"
           fill="none"
           variants={{
             idle:    { stroke: 'rgba(201,169,110,0)', strokeWidth: 1.5 },
@@ -151,7 +162,22 @@ export default function LogoMark({ size = 36 }: { size?: number }) {
           strokeLinecap="round"
         />
 
-        {/* ── The R letterform ── */}
+        {/* ── S letterform (drawn first — R overlaps it in the interlock zones) ── */}
+        <motion.path
+          d={sPath}
+          fill="none"
+          stroke={`url(#${uid}-gs)`}
+          strokeWidth="14"
+          strokeLinecap="round"
+          filter={`url(#${uid}-s)`}
+          variants={{
+            idle:    { opacity: 0.95 },
+            hovered: { opacity: 1 },
+          }}
+          transition={{ duration: 0.2 }}
+        />
+
+        {/* ── R letterform (drawn on top — creates interlock illusion) ── */}
         <motion.path
           d={rPath}
           fillRule="evenodd"
@@ -163,9 +189,9 @@ export default function LogoMark({ size = 36 }: { size?: number }) {
           }}
         />
 
-        {/* ── Shine sweep overlay (clipped to frame) ── */}
+        {/* ── Diagonal shine sweep (clipped to frame, appears on hover) ── */}
         <motion.rect
-          x="4" y="4" width="92" height="92"
+          x="3" y="3" width="114" height="94"
           fill={`url(#${uid}-sh)`}
           clipPath={`url(#${uid}-clip)`}
           variants={{

@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import SmoothScroll from '@/components/SmoothScroll';
 import MagneticCursor from '@/components/MagneticCursor';
-import GradientOrbs from '@/components/GradientOrbs';
+import MouseAurora from '@/components/MouseAurora';
 import ScrollProgress from '@/components/ScrollProgress';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -55,7 +55,7 @@ export default function Home() {
     <SmoothScroll>
       <div ref={mainRef} className="relative min-h-screen" style={{ background: 'var(--bg)', color: 'var(--fg)' }}>
         <MagneticCursor />
-        <GradientOrbs />
+        <MouseAurora />
         <ScrollProgress />
         <Navbar />
 
