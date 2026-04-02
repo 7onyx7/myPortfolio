@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Romeo Shamoun — Software Developer",
+  title: "Romeo Shamoun — Founder and Software Developer",
   description:
     "I build websites, AI agents, and full-stack applications. Available worldwide.",
   openGraph: {
-    title: "Romeo — Software Developer",
+    title: "Romeo Shamoun — Founder and Software Developer",
     description:
       "I build websites, AI agents, and full-stack applications. Available worldwide.",
     type: "website",

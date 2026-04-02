@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useLenis } from '@/hooks/useLenis';
 
 const navItems = [
+  { name: 'Ventures', href: '#ventures' },
   { name: 'Work', href: '#work' },
   { name: 'Services', href: '#services' },
   { name: 'About', href: '#about' },

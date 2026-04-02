@@ -13,13 +13,14 @@ interface Project {
   longDescription?: string;
   techStack: string[];
   category: string;
+  type?: string;
   featured?: boolean;
   liveUrl?: string;
   githubUrl?: string;
   imageUrl?: string;
 }
 
-const projects: Project[] = projectsData;
+const projects: Project[] = (projectsData as Project[]).filter((p) => p.type !== 'venture');
 const categories = ['all', 'web', 'ai', 'fullstack'];
 const categoryLabels: Record<string, string> = {
   all: 'All',
@@ -39,8 +40,6 @@ export default function ProjectGallery() {
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
-  const featured = projects.find((p) => p.featured);
-
   return (
     <section id="work" className="relative z-10 py-32 px-6 sm:px-8">
       <div ref={ref} className="max-w-6xl mx-auto">
@@ -50,7 +49,7 @@ export default function ProjectGallery() {
             as="h2"
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight"
           >
-            Selected Work
+            Projects
           </ScrollRevealText>
           <motion.div
             className="mt-4 mx-auto w-16 h-[1px]"
@@ -60,88 +59,6 @@ export default function ProjectGallery() {
             transition={{ delay: 0.5, duration: 0.8 }}
           />
         </div>
-
-        {/* Featured Project */}
-        {featured && activeCategory === 'all' && (
-          <motion.div
-            className="glass rounded-2xl overflow-hidden mb-12 group"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.3, duration: 0.7 }}
-            data-magnetic
-          >
-            <div className="grid md:grid-cols-2 gap-0">
-              {/* Image */}
-              <div className="relative h-64 md:h-80 overflow-hidden bg-gradient-to-br from-[rgba(201,169,110,0.1)] to-transparent">
-                {featured.imageUrl ? (
-                  <Image
-                    src={featured.imageUrl}
-                    alt={featured.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-6xl opacity-20">&#9670;</span>
-                  </div>
-                )}
-              </div>
-              {/* Info */}
-              <div className="p-8 md:p-10 flex flex-col justify-center">
-                <span
-                  className="text-xs uppercase tracking-widest mb-3"
-                  style={{ color: 'var(--accent)' }}
-                >
-                  Featured
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold mb-3" style={{ color: 'var(--fg)' }}>
-                  {featured.title}
-                </h3>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--fg-muted)' }}>
-                  {featured.longDescription || featured.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {featured.techStack.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs px-3 py-1 rounded-full"
-                      style={{
-                        backgroundColor: 'rgba(201,169,110,0.1)',
-                        color: 'var(--accent)',
-                      }}
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4">
-                  {featured.githubUrl && (
-                    <a
-                      href={featured.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm transition-colors"
-                      style={{ color: 'var(--fg-muted)' }}
-                    >
-                      <FiGithub className="w-4 h-4" /> Code
-                    </a>
-                  )}
-                  {featured.liveUrl && (
-                    <a
-                      href={featured.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm transition-colors"
-                      style={{ color: 'var(--accent)' }}
-                    >
-                      <FiExternalLink className="w-4 h-4" /> Live
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
 
         {/* Filter pills */}
         <div className="flex justify-center gap-2 mb-12 relative">

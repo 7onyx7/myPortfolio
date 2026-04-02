@@ -69,7 +69,7 @@ export default function AboutMe() {
               className="text-lg sm:text-xl leading-relaxed mb-6"
               delay={0.2}
             >
-              Romeo here — a software developer and solo founder who builds websites, AI agents, and full-stack applications for clients who want results.
+              Romeo Shamoun here — a software developer and solo founder who builds websites, AI agents, and full-stack applications for clients who want results.
             </ScrollRevealText>
             <ScrollRevealText
               as="p"

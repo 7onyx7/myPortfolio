@@ -6,6 +6,7 @@ import GradientOrbs from '@/components/GradientOrbs';
 import ScrollProgress from '@/components/ScrollProgress';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Ventures from '@/components/Ventures';
 import Services from '@/components/Services';
 import ProjectGallery from '@/components/ProjectGallery';
 import AboutMe from '@/components/AboutMe';
@@ -14,6 +15,7 @@ import CallToAction from '@/components/CallToAction';
 // Ambient color configs per section
 const sectionColors: Record<string, { r: number; g: number; b: number; opacity: number }> = {
   home:     { r: 201, g: 169, b: 110, opacity: 0.08 },
+  ventures: { r: 201, g: 169, b: 110, opacity: 0.12 },
   services: { r: 201, g: 169, b: 110, opacity: 0.14 },
   work:     { r: 100, g: 140, b: 200, opacity: 0.12 },
   about:    { r: 150, g: 120, b: 200, opacity: 0.12 },
@@ -58,6 +60,7 @@ export default function Home() {
         <Navbar />
 
         <Hero />
+        <Ventures />
         <ProjectGallery />
         <Services />
         <AboutMe />

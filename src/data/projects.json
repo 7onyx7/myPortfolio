@@ -2,20 +2,25 @@
   {
     "id": "nightai",
     "title": "NightAI",
+    "subtitle": "AI Agency",
     "description": "AI voice agents that answer calls, book appointments, and follow up — 24/7.",
     "longDescription": "A done-for-you AI agent platform that runs your front office around the clock. NightAI answers inbound calls with natural voice IVR, books appointments with calendar sync and double-booking protection, sends email reminders, and transfers to a human when needed. Built with Retell AI, Twilio, and OpenAI — live in days, not months.",
     "techStack": ["HTML", "CSS", "JavaScript", "Retell AI", "Twilio", "OpenAI"],
     "category": "ai",
+    "type": "venture",
     "featured": true,
-    "liveUrl": "https://www.getnightai.com"
+    "liveUrl": "https://www.getnightai.com",
+    "imageUrl": "/nightai.png"
   },
   {
     "id": "bantrwrld",
     "title": "bantrwrld",
+    "subtitle": "Social Platform",
     "description": "A next-generation social platform powered by AI.",
     "longDescription": "A comprehensive social platform integrating AI-powered features for a next-generation user experience. Built from the ground up with scalability and performance in mind.",
     "techStack": ["Next.js", "Express.js", "PostgreSQL", "Tailwind CSS"],
     "category": "ai",
+    "type": "venture",
     "featured": true,
     "liveUrl": "https://bantrwrld.com",
     "imageUrl": "/bw.png"
