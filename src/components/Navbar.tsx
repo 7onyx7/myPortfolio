@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLenis } from '@/hooks/useLenis';
+import { useHaptics } from '@/hooks/useHaptics';
+import LogoMark from './LogoMark';
 
 const navItems = [
   { name: 'Ventures', href: '#ventures' },
@@ -16,6 +18,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const lenis = useLenis();
+  const haptics = useHaptics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +42,7 @@ export default function Navbar() {
   }, []);
 
   const scrollToSection = (href: string) => {
+    haptics.light();
     const el = document.getElementById(href.slice(1));
     if (el) {
       if (lenis) {
@@ -64,15 +68,20 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.button
-            onClick={() => scrollToSection('#home')}
-            className="text-lg font-semibold tracking-wider uppercase"
-            style={{ color: 'var(--accent)' }}
-            whileHover={{ opacity: 0.7 }}
+          <button
+            onClick={() => { haptics.light(); scrollToSection('#home'); }}
+            className="flex items-center gap-2.5 group"
+            aria-label="Go to home"
             data-magnetic
           >
-            Romeo Shamoun
-          </motion.button>
+            <LogoMark size={36} />
+            <span
+              className="hidden sm:block text-sm font-medium tracking-[0.18em] uppercase transition-colors duration-300"
+              style={{ color: 'var(--fg-muted)' }}
+            >
+              Romeo Shamoun
+            </span>
+          </button>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
@@ -104,7 +113,7 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => { haptics.toggle(); setIsOpen(!isOpen); }}
             className="md:hidden p-2"
             style={{ color: 'var(--fg-muted)' }}
             aria-label="Toggle menu"

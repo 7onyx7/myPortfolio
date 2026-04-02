@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import ScrollRevealText from './ScrollRevealText';
+import { useHaptics } from '@/hooks/useHaptics';
 
 const socials = [
   { icon: FiGithub, href: 'https://github.com/7onyx7', label: 'GitHub' },
@@ -12,6 +13,7 @@ const socials = [
 export default function CallToAction() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' });
+  const haptics = useHaptics();
 
   return (
     <section id="contact" className="relative z-10 py-32 px-6 sm:px-8">
@@ -45,6 +47,7 @@ export default function CallToAction() {
             borderColor: 'rgba(201, 169, 110, 0.4)',
             color: 'var(--accent)',
           }}
+          onClick={() => haptics.medium()}
           whileHover={{
             borderColor: 'rgba(201, 169, 110, 1)',
             boxShadow: '0 0 40px rgba(201, 169, 110, 0.2)',
@@ -78,6 +81,7 @@ export default function CallToAction() {
                 border: '1px solid rgba(255,255,255,0.06)',
                 color: 'var(--fg-muted)',
               }}
+              onClick={() => haptics.light()}
               whileHover={{
                 borderColor: 'rgba(201,169,110,0.3)',
                 color: '#c9a96e',

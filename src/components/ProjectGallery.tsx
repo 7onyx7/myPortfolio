@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { useHaptics } from '@/hooks/useHaptics';
 import Image from 'next/image';
 import { FiExternalLink, FiGithub, FiChevronDown } from 'react-icons/fi';
 import ScrollRevealText from './ScrollRevealText';
@@ -34,6 +35,7 @@ export default function ProjectGallery() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-10% 0px' });
+  const haptics = useHaptics();
 
   const filtered =
     activeCategory === 'all'
@@ -66,6 +68,7 @@ export default function ProjectGallery() {
             <button
               key={cat}
               onClick={() => {
+                haptics.selection();
                 setActiveCategory(cat);
                 setExpandedId(null);
               }}
@@ -168,9 +171,10 @@ export default function ProjectGallery() {
 
                   {/* Expand toggle */}
                   <button
-                    onClick={() =>
-                      setExpandedId(expandedId === project.id ? null : project.id)
-                    }
+                    onClick={() => {
+                      haptics.light();
+                      setExpandedId(expandedId === project.id ? null : project.id);
+                    }}
                     className="flex items-center gap-1 text-xs transition-colors"
                     style={{ color: 'var(--accent)' }}
                   >
@@ -203,6 +207,7 @@ export default function ProjectGallery() {
                                 href={project.githubUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => haptics.light()}
                                 className="flex items-center gap-1.5 text-sm transition-colors hover:opacity-80"
                                 style={{ color: 'var(--fg-muted)' }}
                               >
@@ -214,6 +219,7 @@ export default function ProjectGallery() {
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => haptics.light()}
                                 className="flex items-center gap-1.5 text-sm transition-colors hover:opacity-80"
                                 style={{ color: 'var(--accent)' }}
                               >

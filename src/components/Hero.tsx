@@ -1,6 +1,7 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useHaptics } from '@/hooks/useHaptics';
 
 const phrases = [
   'I build websites.',
@@ -10,6 +11,7 @@ const phrases = [
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const haptics = useHaptics();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start start', 'end start'],
@@ -105,6 +107,7 @@ export default function Hero() {
             borderColor: 'rgba(201, 169, 110, 0.3)',
             color: 'var(--accent)',
           }}
+          onClick={() => haptics.medium()}
           whileHover={{
             borderColor: 'rgba(201, 169, 110, 0.8)',
             boxShadow: '0 0 30px rgba(201, 169, 110, 0.15)',
