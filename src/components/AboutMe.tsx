@@ -69,7 +69,7 @@ export default function AboutMe() {
               className="text-lg sm:text-xl leading-relaxed mb-6"
               delay={0.2}
             >
-              Romeo Shamoun here — a software developer and solo founder who builds websites, AI agents, and full-stack applications for clients who want results.
+              Romeo Shamoun. Software developer and solo founder building websites, AI agents, and full-stack applications for clients who demand results.
             </ScrollRevealText>
             <ScrollRevealText
               as="p"
@@ -77,7 +77,7 @@ export default function AboutMe() {
               delay={0.4}
               staggerDelay={0.02}
             >
-              I thrive on solving complex problems and shipping products that look incredible and perform even better. From sleek landing pages to intelligent automation — if you can dream it, I can build it.
+              I thrive on solving complex problems and shipping products that look incredible and perform even better. From sleek landing pages to intelligent automation. If you can dream it, I can build it.
             </ScrollRevealText>
             <ScrollRevealText
               as="p"
@@ -85,7 +85,7 @@ export default function AboutMe() {
               delay={0.6}
               staggerDelay={0.02}
             >
-              Winner of the Patient Safety Technology Challenge at Uncommon Hacks 2025. Based in Chicago — building for the world.
+              Winner of the Patient Safety Technology Challenge at Uncommon Hacks 2025. Based in Chicago, building for the world.
             </ScrollRevealText>
           </div>
 

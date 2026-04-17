@@ -95,7 +95,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          Founder & Software Developer — Available Worldwide
+          Founder & Software Developer | Available Worldwide
         </motion.p>
 
         {/* CTA */}
